@@ -23,7 +23,6 @@ public class MemberController {
 	
 	@RequestMapping("/findIdOk")
 	public String findIdOk(String mb_name, String mb_email, Model model) {
-		model.addAttribute("nav", 0);
 		model.addAttribute("mb_name", mb_name);
 		model.addAttribute("mb_email", mb_email);
 		new MbFindIdOkCommand().execute(model);
@@ -32,7 +31,6 @@ public class MemberController {
 	
 	@RequestMapping("/findPwOk")
 	public String findPwOk(String mb_id, String mb_name, String mb_email, Model model) {
-		model.addAttribute("nav", 0);
 		model.addAttribute("mb_id", mb_id);
 		model.addAttribute("mb_name", mb_name);
 		model.addAttribute("mb_email", mb_email);
@@ -45,7 +43,7 @@ public class MemberController {
 		return "/member/signUp";
 	}
 	
-	@RequestMapping("/signUpCustomerOk")
+	@RequestMapping("/signUpOk")
 	public String signUpCustomerOk(MemberDTO dto, Model model) {
 		model.addAttribute("dto", dto);
 		new SignUpOkCommand().execute(model);
@@ -66,7 +64,6 @@ public class MemberController {
 		if(mb_uid != 0) {
 			session.setAttribute("mb_uid", mb_uid);
 		}
-		System.out.println((Integer)session.getAttribute("mb_uid"));
 		return "/member/loginOk";
 	}
 	
@@ -74,5 +71,10 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "/member/logout";
+	}
+	
+	@RequestMapping("/main")
+	public String main(Model model) {
+		return "/member/main";
 	}
 }

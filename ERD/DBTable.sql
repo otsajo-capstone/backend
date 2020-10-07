@@ -8,7 +8,7 @@ CREATE TABLE member
     `mb_name`     VARCHAR(45)     NOT NULL, 
     `mb_email`    TEXT            NOT NULL, 
     `mb_regDate`  DATETIME        NOT NULL    DEFAULT now(), 
-    `mb_type`     INT             NOT NULL, 
+    `mb_type`     INT DEFAULT 0, 
     PRIMARY KEY (mb_uid)
 );
 
@@ -17,3 +17,6 @@ ALTER TABLE member
 
 ALTER TABLE member
     ADD CONSTRAINT UC_mb_email UNIQUE (mb_email);
+    
+DROP TABLE IF EXISTS member ;
+select * from member;

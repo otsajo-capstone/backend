@@ -22,7 +22,6 @@ public class MbFindIdOkCommand implements Command {
 		
 		dto = dao.selectId(mb_name, mb_email);
 
-		
 		String result = "";
 		
 		if(dto != null) {
@@ -30,7 +29,7 @@ public class MbFindIdOkCommand implements Command {
 				result = dto.getMb_id().substring(0, 5) + dto.getMb_id().substring(5).replace(dto.getMb_id().substring(5), "*****");
 			} 			
 		}
-		model.addAttribute("findIdOk", result);
+		model.addAttribute("findId", result);
 	}
 
 }

@@ -18,6 +18,7 @@ public class SignUpOkCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		MemberDTO dto = (MemberDTO)map.get("dto");
 		dto.setMb_pw(pe.encode(dto.getMb_pw()));
+		
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		
 		cnt = dao.insertMember(dto);

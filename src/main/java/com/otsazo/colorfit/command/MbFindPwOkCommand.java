@@ -34,7 +34,7 @@ public class MbFindPwOkCommand implements Command {
 		String mb_email = (String)map.get("mb_email");  
 
 		final String SMTP_USERNAME = "b2nyb2st77@naver.com";
-		final String SMTP_PASSWORD = "merry1125!";
+		final String SMTP_PASSWORD = "merry1125";
 		String HOST = "smtp.naver.com";
 
 		Properties props = new Properties();   

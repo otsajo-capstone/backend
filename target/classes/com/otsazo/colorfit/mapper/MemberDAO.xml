@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.otsazo.colorfit.beans.dao.MemberDAO">
 
 	<!-- 회원등록 -->
 	<insert id="insertMember" flushCache="true" parameterType="com.otsazo.colorfit.beans.MemberDTO">
-		INSERT INTO member (mb_id, mb_pw, mb_name, mb_email, mb_type)
-		VALUES (#{dto.mb_id}, #{dto.mb_pw}, #{dto.mb_name}, #{dto.mb_email}, #{dto.mb_type});
+		INSERT INTO member(mb_id, mb_pw, mb_name, mb_email)
+		VALUES (#{dto.mb_id}, #{dto.mb_pw}, #{dto.mb_name}, #{dto.mb_email});
 	</insert>
 	
 	<!-- 아이디 중복검사 -->
@@ -17,16 +18,16 @@
 		SELECT count(*) FROM member WHERE mb_email = #{mb_email};
 	</select>
 	
-	<!-- 회원 한명 아이디 불러오기 -->
+	<!-- 회원 한명 번호 불러오기 -->
 	<select id="selectUidById" 
- 		resultType="com.otsazo.colorfit.beans.MemberDTO">
+ 		resultType="int">
  		SELECT mb_uid FROM member
 		WHERE mb_id = #{param1}
  	</select>
  	
  	<!-- 아이디로 비밀번호 불러오기 -->
 	<select id="selectPwById" 
- 		resultType="com.otsazo.colorfit.beans.MemberDTO">
+ 		resultType="String">
  		SELECT mb_pw FROM member
 		WHERE mb_id = #{param1}
  	</select>
@@ -53,5 +54,12 @@
 		UPDATE member SET mb_pw = #{param1}
 		WHERE mb_id = #{param2};
 	</update>
+	
+	<!-- 회원 한명 정보 불러오기 -->
+	<select id="selectMemberByUid" resultType="com.otsazo.colorfit.beans.MemberDTO">
+		SELECT *
+		FROM member
+		WHERE mb_uid = #{param1}
+	</select>
 	
 </mapper>	
