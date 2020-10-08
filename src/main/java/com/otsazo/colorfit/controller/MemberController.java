@@ -10,6 +10,8 @@ import com.otsazo.colorfit.beans.MemberDTO;
 import com.otsazo.colorfit.command.LoginCommand;
 import com.otsazo.colorfit.command.MbFindIdOkCommand;
 import com.otsazo.colorfit.command.MbFindPwOkCommand;
+import com.otsazo.colorfit.command.MypageCommand;
+import com.otsazo.colorfit.command.MypageOkCommand;
 import com.otsazo.colorfit.command.SignUpOkCommand;
 
 @Controller
@@ -44,7 +46,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/signUpOk")
-	public String signUpCustomerOk(MemberDTO dto, Model model) {
+	public String signUpOk(MemberDTO dto, Model model) {
 		model.addAttribute("dto", dto);
 		new SignUpOkCommand().execute(model);
 		return "/member/signUpOk";
@@ -76,5 +78,19 @@ public class MemberController {
 	@RequestMapping("/main")
 	public String main(Model model) {
 		return "/member/main";
+	}
+	
+	@RequestMapping("/mypage")
+	public String mypage(int mb_uid, Model model) {
+		model.addAttribute("mb_uid", mb_uid);
+		new MypageCommand().execute(model);
+		return "/member/mypage";
+	}
+	
+	@RequestMapping("/mypageOk")
+	public String mypageOk(MemberDTO dto, Model model) {
+		model.addAttribute("dto", dto);
+		new MypageOkCommand().execute(model);
+		return "/member/mypageOk";
 	}
 }

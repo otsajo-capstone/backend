@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.otsazo.colorfit.beans.dao.DressDAO">
+
+	<!-- 분석결과 저장 -->
+	<insert id="insertDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
+		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, dress_img_org, dress_img_sav, dress_name, dress_memo, share_type)
+		VALUES (#{dto.mb_Uid}, #{dto.spring}, #{dto.summer}, #{dto.autumn}, #{dto.winter}, #{dto.dress_img_org}, #{dto.dress_img_sav}, #{dto.dress_name}, #{dto.dress_memo}, #{dto.share_type});
+	</insert>
+	
+</mapper>

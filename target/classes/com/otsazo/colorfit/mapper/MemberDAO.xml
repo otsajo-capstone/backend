@@ -4,8 +4,8 @@
 
 	<!-- 회원등록 -->
 	<insert id="insertMember" flushCache="true" parameterType="com.otsazo.colorfit.beans.MemberDTO">
-		INSERT INTO member(mb_id, mb_pw, mb_name, mb_email)
-		VALUES (#{dto.mb_id}, #{dto.mb_pw}, #{dto.mb_name}, #{dto.mb_email});
+		INSERT INTO member(mb_id, mb_pw, mb_name, mb_email, mb_type)
+		VALUES (#{dto.mb_id}, #{dto.mb_pw}, #{dto.mb_name}, #{dto.mb_email}, #{dto.mb_type});
 	</insert>
 	
 	<!-- 아이디 중복검사 -->
@@ -61,5 +61,12 @@
 		FROM member
 		WHERE mb_uid = #{param1}
 	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateMemberByUid" flushCache="true" parameterType="com.otsazo.colorfit.beans.MemberDTO">
+		UPDATE member
+		SET mb_name = #{dto.mb_name}, mb_pw = #{dto.mb_pw}, mb_email = #{dto.mb_email}, mb_type = #{dto.mb_type}
+		WHERE mb_uid = #{dto.mb_uid};
+	</update>
 	
 </mapper>	
