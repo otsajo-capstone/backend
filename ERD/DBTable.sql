@@ -17,10 +17,12 @@ ALTER TABLE member
 
 ALTER TABLE member
     ADD CONSTRAINT UC_mb_email UNIQUE (mb_email);
+   
+ALTER TABLE member convert to charset utf8;
+
     
 DROP TABLE IF EXISTS member ;
 select * from member;
-select * from dress;
 
 CREATE TABLE dress
 (
@@ -42,3 +44,8 @@ CREATE TABLE dress
 ALTER TABLE dress
     ADD CONSTRAINT FK_dress_mb_uid_member_mb_uid FOREIGN KEY (mb_uid)
         REFERENCES member (mb_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
+        
+DROP TABLE IF EXISTS dress ;
+select * from dress;
+
+ALTER TABLE dress convert to charset utf8;

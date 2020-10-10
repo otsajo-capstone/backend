@@ -24,7 +24,7 @@ public class SaveLinkResultCommand implements Command {
 		MultipartFile dressImg = (MultipartFile) map.get("dressImg");
 
 		ServletContext context = C.context;
-		String saveDirectory = context.getRealPath("img/dress");
+		String saveDirectory = context.getRealPath("image");
 		
 		if(dressImg.getOriginalFilename() == "" || dressImg.getOriginalFilename() == null) {
 			System.out.println("no file");

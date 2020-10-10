@@ -42,7 +42,7 @@
 	
 	<!-- 비밀번호 찾기 -->
 	<select id="selectPw" resultType="com.otsazo.colorfit.beans.MemberDTO">
-		SELECT mb_id, mb_name, mb_email, mb_pw
+		SELECT *
 		FROM member
 		WHERE mb_id = #{param1}
 		AND mb_name = #{param2}
