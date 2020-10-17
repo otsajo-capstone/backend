@@ -69,4 +69,8 @@
 		WHERE mb_uid = #{dto.mb_uid};
 	</update>
 	
+	<delete id="deleteMemberByUid" flushCache="true">
+		DELETE FROM member WHERE mb_uid = #{mb_uid}
+	</delete>
+	
 </mapper>	

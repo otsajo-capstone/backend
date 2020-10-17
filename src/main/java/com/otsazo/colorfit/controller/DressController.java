@@ -1,6 +1,7 @@
 package com.otsazo.colorfit.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,13 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.otsazo.colorfit.beans.C;
 import com.otsazo.colorfit.beans.DressDTO;
+import com.otsazo.colorfit.beans.MemberDTO;
 import com.otsazo.colorfit.beans.Results;
 import com.otsazo.colorfit.beans.dao.DressDAO;
+import com.otsazo.colorfit.beans.dao.MemberDAO;
 import com.otsazo.colorfit.command.SaveLinkResultCommand;
 
 @RestController
-@RequestMapping("/analysis")
-public class AnalysisController {
+public class DressController {
 	
 //	@RequestMapping("/choose")
 //	public String choose(Model model) {
@@ -38,8 +41,8 @@ public class AnalysisController {
 //		return "/analysis/linkResult";
 //	}
 	
-	@RequestMapping("/saveLinkResult")
-	public Results linkResult(DressDTO dto, @RequestParam("dressImg") MultipartFile dressImg, Model model) {
+	@RequestMapping("/analysis/saveResult")
+	public Results saveResult(DressDTO dto, @RequestParam("dressImg") MultipartFile dressImg, Model model) {
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("dressImg", dressImg);
@@ -81,6 +84,69 @@ public class AnalysisController {
 			}
 		}
 
+		return results;
+	}
+	
+	@RequestMapping("/myDressRoom/{mb_uid}")
+	public Results mydressroom(@PathVariable("mb_uid") int mb_uid) {
+		
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		ArrayList<DressDTO> dressList = dao.selectMyDresses(mb_uid);
+		if (dressList!=null) {
+			results.setDlist(dressList);
+			results.setStatus(200);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/myDressRoom/select/{dress_uid}")
+	public Results selectmydress(@PathVariable("dress_uid") int dress_uid) {
+		
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		DressDTO dto = dao.selectDress(dress_uid);
+		if (dto!=null) {
+			results.setDdto(dto);
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/myDressRoom/update")
+	public Results updatemydress(DressDTO dto, Model model) {
+		
+		model.addAttribute("dto", dto);
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		int cnt = dao.updateDress(dto);
+		
+		if (cnt == 1) {
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/myDressRoom/delete/{dress_uid}")
+	public Results deletemydress(@PathVariable("dress_uid") int dress_uid) {
+		
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		int cnt = dao.deleteDress(dress_uid);
+		
+		if (cnt == 1) {
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
 		return results;
 	}
 	

@@ -16,5 +16,6 @@ public interface MemberDAO {
 	public int updatePw(String mb_pw, String mb_id);
 	public MemberDTO selectMemberByUid(int mb_uid);
 	public int updateMemberByUid(@Param("dto") MemberDTO dto);
+	public int deleteMemberByUid(int mb_uid);
 	
 }

@@ -8,19 +8,22 @@ public class DressDTO {
 	private int summer;
 	private int autumn;
 	private int winter;
+	private String color;
 	private String dress_name;
 	private String dress_memo;
 	private String dress_regDate;
 	private String dress_img_org;
 	private String dress_img_sav;
 	private int share_type;
+	private int likes;
 	
 	public DressDTO() {
 		super();
 	}
 
-	public DressDTO(int dress_uid, int mb_uid, int spring, int summer, int autumn, int winter, String dress_name,
-			String dress_memo, String dress_regDate, String dress_img_org, String dress_img_sav, int share_type) {
+	public DressDTO(int dress_uid, int mb_uid, int spring, int summer, int autumn, int winter, String color,
+			String dress_name, String dress_memo, String dress_regDate, String dress_img_org, String dress_img_sav,
+			int share_type, int likes) {
 		super();
 		this.dress_uid = dress_uid;
 		this.mb_uid = mb_uid;
@@ -28,12 +31,14 @@ public class DressDTO {
 		this.summer = summer;
 		this.autumn = autumn;
 		this.winter = winter;
+		this.color = color;
 		this.dress_name = dress_name;
 		this.dress_memo = dress_memo;
 		this.dress_regDate = dress_regDate;
 		this.dress_img_org = dress_img_org;
 		this.dress_img_sav = dress_img_sav;
 		this.share_type = share_type;
+		this.likes = likes;
 	}
 
 	public int getDress_uid() {
@@ -84,6 +89,14 @@ public class DressDTO {
 		this.winter = winter;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	public String getDress_name() {
 		return dress_name;
 	}
@@ -130,6 +143,14 @@ public class DressDTO {
 
 	public void setDress_img_sav(String dress_img_sav) {
 		this.dress_img_sav = dress_img_sav;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 	
 }

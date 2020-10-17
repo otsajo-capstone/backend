@@ -212,7 +212,7 @@ public class MemberController {
 	 */
 	
 	@RequestMapping("/mypage/{mb_uid}")
-	public Results mypage(@PathVariable("mb_uid") int mb_uid, Model model) {
+	public Results mypage(@PathVariable("mb_uid") int mb_uid) {
 		Results results = new Results();
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
 		MemberDTO dto = dao.selectMemberByUid(mb_uid);
@@ -239,6 +239,23 @@ public class MemberController {
 
 		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);		
 		cnt = dao.updateMemberByUid(dto);
+		
+		if(cnt==1) {
+			results.setStatus(200);
+		} else {
+			results.setStatus(400);	
+		}
+		
+		return results;
+	}
+	
+	@RequestMapping("/withdrawal/{mb_uid}")
+	public Results withdrawal(@PathVariable("mb_uid") int mb_uid) {
+		Results results = new Results();
+		int cnt = 0;
+	
+		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);		
+		cnt = dao.deleteMemberByUid(mb_uid);
 		
 		if(cnt==1) {
 			results.setStatus(200);

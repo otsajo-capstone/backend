@@ -4,8 +4,31 @@
 
 	<!-- 분석결과 저장 -->
 	<insert id="insertDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
-		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, dress_img_org, dress_img_sav, dress_name, dress_memo, share_type)
-		VALUES (#{dto.mb_uid}, #{dto.spring}, #{dto.summer}, #{dto.autumn}, #{dto.winter}, #{dto.dress_img_org}, #{dto.dress_img_sav}, #{dto.dress_name}, #{dto.dress_memo}, #{dto.share_type});
+		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, color, dress_img_org, dress_img_sav, dress_name, dress_memo, share_type)
+		VALUES (#{dto.mb_uid}, #{dto.spring}, #{dto.summer}, #{dto.autumn}, #{dto.winter}, #{dto.color}, #{dto.dress_img_org}, #{dto.dress_img_sav}, #{dto.dress_name}, #{dto.dress_memo}, #{dto.share_type});
 	</insert>
+	
+	<select id="selectMyDresses" resultType="com.otsazo.colorfit.beans.DressDTO">
+		SELECT *
+		FROM dress
+		Where mb_uid = #{mb_uid}
+		ORDER BY likes DESC, dress_uid DESC
+	</select>
+	
+	<select id="selectDress" resultType="com.otsazo.colorfit.beans.DressDTO">
+		SELECT *
+		FROM dress
+		Where dress_uid = #{dress_uid}
+	</select>
+	
+	<update id="updateDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
+		UPDATE dress
+		SET dress_name = #{dto.dress_name}, dress_memo = #{dto.dress_memo}, share_type = #{dto.share_type}
+		WHERE dress_uid = #{dto.dress_uid};
+	</update>
+	
+	<delete id="deleteDress" flushCache="true">
+		DELETE FROM dress WHERE dress_uid = #{dress_uid}
+	</delete>
 	
 </mapper>
