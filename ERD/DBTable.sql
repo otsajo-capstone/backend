@@ -40,15 +40,28 @@ CREATE TABLE dress
     `dress_regDate`    	DATETIME       NOT NULL    DEFAULT now(), 
     `share_type`       	INT            NOT NULL    DEFAULT 0 COMMENT '0: 공개 1: 비공개',
     `likes`       		INT            NULL    DEFAULT 0,
-    PRIMARY KEY (dress_uid)
+    PRIMARY KEY (dress_uid),
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
 );
-
-ALTER TABLE dress
-    ADD CONSTRAINT FK_dress_mb_uid_member_mb_uid FOREIGN KEY (mb_uid)
-        REFERENCES member (mb_uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
        
 ALTER TABLE dress convert to charset utf8;
 
 DROP TABLE IF EXISTS dress ;
 select * from dress;
 
+CREATE TABLE reply
+(
+    `reply_uid`         INT         NOT NULL 	AUTO_INCREMENT, 
+    `dress_uid`       	INT         NOT NULL, 
+    `reply_content`     TEXT        NOT NULL, 
+    `mb_uid`            INT         NOT NULL, 
+    `reply_date`        DATETIME    NOT NULL    DEFAULT now(), 
+    PRIMARY KEY (reply_uid),
+    FOREIGN KEY (dress_uid) REFERENCES dress (dress_uid),
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
+);
+
+ALTER TABLE reply convert to charset utf8;
+
+DROP TABLE IF EXISTS reply ;
+select * from reply;

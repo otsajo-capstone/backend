@@ -15,6 +15,15 @@
 		ORDER BY likes DESC, dress_uid DESC
 	</select>
 	
+	<select id="selectYourDresses" resultType="com.otsazo.colorfit.beans.DressDTO">
+		SELECT *
+		FROM dress, member
+		Where dress.mb_uid = member.mb_uid
+		and member.mb_type = #{mb_type}
+		and dress.share_type = 0
+		ORDER BY dress.likes DESC, dress.dress_uid DESC
+	</select>
+	
 	<select id="selectDress" resultType="com.otsazo.colorfit.beans.DressDTO">
 		SELECT *
 		FROM dress
@@ -30,5 +39,38 @@
 	<delete id="deleteDress" flushCache="true">
 		DELETE FROM dress WHERE dress_uid = #{dress_uid}
 	</delete>
+	
+	<insert id="insertReply" flushCache="true" parameterType="com.otsazo.colorfit.beans.ReplyDTO">
+		INSERT INTO reply(dress_uid, reply_content, mb_uid)
+		VALUES (#{dto.dress_uid}, #{dto.reply_content}, #{dto.mb_uid});
+	</insert>
+	
+	<update id="updateReply" flushCache="true" parameterType="com.otsazo.colorfit.beans.ReplyDTO">
+		UPDATE reply
+		SET reply_content = #{dto.reply_content}
+		WHERE reply_uid = #{dto.reply_uid};
+	</update>
+	
+	<delete id="deleteReply" flushCache="true">
+		DELETE FROM reply WHERE reply_uid = #{reply_uid}
+	</delete>
+	
+	<select id="selectDressReply" resultType="com.otsazo.colorfit.beans.ReplyDTO">
+		SELECT *
+		FROM reply
+		Where dress_uid = #{dress_uid}
+	</select>
+	
+	<select id="selectMyReply" resultType="com.otsazo.colorfit.beans.ReplyDTO">
+		SELECT *
+		FROM reply
+		Where mb_uid = #{mb_uid}
+	</select>
+	
+	<update id="likeDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
+		UPDATE dress
+		SET likes = likes + 1
+		WHERE dress_uid = #{dress_uid};
+	</update>
 	
 </mapper>

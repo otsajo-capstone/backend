@@ -11,13 +11,14 @@ public class Results {
 	DressDTO ddto;
 	ArrayList<DressDTO> dlist;
 	ArrayList<MemberDTO> mlist;
+	ArrayList<ReplyDTO> rlist;
 	
 	public Results() {
 		super();
 	}
 
 	public Results(String stringResult, int intResult, int status, MemberDTO mdto, DressDTO ddto,
-			ArrayList<DressDTO> dlist, ArrayList<MemberDTO> mlist) {
+			ArrayList<DressDTO> dlist, ArrayList<MemberDTO> mlist, ArrayList<ReplyDTO> rlist) {
 		super();
 		this.stringResult = stringResult;
 		this.intResult = intResult;
@@ -26,6 +27,7 @@ public class Results {
 		this.ddto = ddto;
 		this.dlist = dlist;
 		this.mlist = mlist;
+		this.rlist = rlist;
 	}
 
 	public String getStringResult() {
@@ -82,6 +84,14 @@ public class Results {
 
 	public void setMlist(ArrayList<MemberDTO> mlist) {
 		this.mlist = mlist;
+	}
+
+	public ArrayList<ReplyDTO> getRlist() {
+		return rlist;
+	}
+
+	public void setRlist(ArrayList<ReplyDTO> rlist) {
+		this.rlist = rlist;
 	}
 	
 }
