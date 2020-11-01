@@ -32,7 +32,7 @@ CREATE TABLE dress
     `summer`            INT			   NOT NULL, 
     `autumn`            INT			   NOT NULL, 
     `winter`            INT			   NOT NULL,
-    `color`            	VARCHAR(200)   NOT NULL,
+    `color`            	TEXT   NOT NULL,
     `dress_img_org`  	VARCHAR(200)   NULL        COMMENT '사진원본명', 
     `dress_img_sav` 	VARCHAR(200)   NULL        COMMENT '사진저장명', 
     `dress_name`    	VARCHAR(45)    NOT NULL, 
