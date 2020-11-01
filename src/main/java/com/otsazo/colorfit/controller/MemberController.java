@@ -237,8 +237,10 @@ public class MemberController {
 		
 		dto.setMb_pw(pe.encode(dto.getMb_pw()));
 
-		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);		
-		cnt = dao.updateMemberByUid(dto);
+		MemberDAO dao = C.sqlSession.getMapper(MemberDAO.class);
+		if(dao.checkEmail(dto.getMb_email())==0) {
+			cnt = dao.updateMemberByUid(dto);
+		}
 		
 		if(cnt==1) {
 			results.setStatus(200);
