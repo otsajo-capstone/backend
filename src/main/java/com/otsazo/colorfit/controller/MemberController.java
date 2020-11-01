@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,7 @@ import com.otsazo.colorfit.command.MypageCommand;
 import com.otsazo.colorfit.command.MypageOkCommand;
 import com.otsazo.colorfit.command.SignUpOkCommand;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/member")
 public class MemberController {
