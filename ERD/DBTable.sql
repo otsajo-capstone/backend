@@ -38,7 +38,7 @@ CREATE TABLE dress
     `dress_name`    	VARCHAR(45)    NOT NULL, 
     `dress_memo`    	TEXT           NULL,
     `dress_regDate`    	DATETIME       NOT NULL    DEFAULT now(), 
-    `share_type`       	INT            NOT NULL    DEFAULT 0 COMMENT '0: 공개 1: 비공개',
+    `share_type`       	INT            NOT NULL    DEFAULT 1 COMMENT '0: 공개 1: 비공개',
     `likes`       		INT            NULL    DEFAULT 0,
     PRIMARY KEY (dress_uid),
     FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
