@@ -9,6 +9,7 @@ public class DressDTO {
 	private int autumn;
 	private int winter;
 	private String color;
+	private String dress_link;
 	private String dress_name;
 	private String dress_memo;
 	private String dress_regDate;
@@ -22,8 +23,8 @@ public class DressDTO {
 	}
 
 	public DressDTO(int dress_uid, int mb_uid, int spring, int summer, int autumn, int winter, String color,
-			String dress_name, String dress_memo, String dress_regDate, String dress_img_org, String dress_img_sav,
-			int share_type, int likes) {
+			String dress_link, String dress_name, String dress_memo, String dress_regDate, String dress_img_org,
+			String dress_img_sav, int share_type, int likes) {
 		super();
 		this.dress_uid = dress_uid;
 		this.mb_uid = mb_uid;
@@ -32,6 +33,7 @@ public class DressDTO {
 		this.autumn = autumn;
 		this.winter = winter;
 		this.color = color;
+		this.dress_link = dress_link;
 		this.dress_name = dress_name;
 		this.dress_memo = dress_memo;
 		this.dress_regDate = dress_regDate;
@@ -152,5 +154,19 @@ public class DressDTO {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
+
+
+
+	public String getDress_link() {
+		return dress_link;
+	}
+
+
+
+	public void setDress_link(String dress_link) {
+		this.dress_link = dress_link;
+	}
+	
+	
 	
 }

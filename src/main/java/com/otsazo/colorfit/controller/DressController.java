@@ -93,8 +93,8 @@ public class DressController {
 		return results;
 	}
 	
-	@RequestMapping("/analysis/saveResult2")
-	public Results saveResult2(DressDTO dto) {
+	@RequestMapping("/analysis/saveLinkResult")
+	public Results saveLinkResult2(DressDTO dto) {
 
 		Results results = new Results();
 		
@@ -103,6 +103,26 @@ public class DressController {
 		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
 
 		cnt = dao.insertDress(dto);
+		
+		if(cnt == 1) {
+			results.setStatus(200);
+		} else {
+			results.setStatus(400);
+		}
+
+		return results;
+	}
+	
+	@RequestMapping("/analysis/saveImageResult")
+	public Results saveImageResult3(DressDTO dto) {
+
+		Results results = new Results();
+		
+		int cnt = 0;
+
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+
+		cnt = dao.insertDress2(dto);
 		
 		if(cnt == 1) {
 			results.setStatus(200);

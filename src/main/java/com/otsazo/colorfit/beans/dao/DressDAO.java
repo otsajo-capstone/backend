@@ -13,6 +13,7 @@ import com.otsazo.colorfit.beans.RereplyDTO;
 public interface DressDAO {
 
 	public int insertDress(@Param("dto") DressDTO dto);
+	public int insertDress2(@Param("dto") DressDTO dto);
 	public ArrayList<DressDTO> selectMyDresses(int mb_uid);
 	public ArrayList<DressDTO> selectYourDresses(int mb_type);
 	public DressDTO selectDress(int dress_uid);
