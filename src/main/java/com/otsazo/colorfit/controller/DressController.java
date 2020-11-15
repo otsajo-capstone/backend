@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.otsazo.colorfit.beans.C;
 import com.otsazo.colorfit.beans.DressDTO;
+import com.otsazo.colorfit.beans.DressMemberDTO;
 import com.otsazo.colorfit.beans.LikesDTO;
 import com.otsazo.colorfit.beans.MemberDTO;
 import com.otsazo.colorfit.beans.ReplyDTO;
@@ -164,7 +165,7 @@ public class DressController {
 
 		Results results = new Results();
 		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
-		DressDTO dress = dao.selectDress(dress_uid);
+		DressMemberDTO dress = dao.selectDress(dress_uid);
 		ArrayList<ReplyDTO> rlist = dao.selectDressReply(dress_uid);
 		LikesDTO like = dao.checkLikesType(dress_uid, mb_uid);
 		

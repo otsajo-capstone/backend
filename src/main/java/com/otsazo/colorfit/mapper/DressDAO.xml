@@ -21,7 +21,7 @@
 		ORDER BY likes DESC, dress_uid DESC
 	</select>
 	
-	<select id="selectYourDresses" resultType="com.otsazo.colorfit.beans.DressDTO">
+	<select id="selectYourDresses" resultType="com.otsazo.colorfit.beans.DressMemberDTO">
 		SELECT *
 		FROM dress, member
 		Where dress.mb_uid = member.mb_uid
@@ -30,10 +30,10 @@
 		ORDER BY dress.likes DESC, dress.dress_uid DESC
 	</select>
 	
-	<select id="selectDress" resultType="com.otsazo.colorfit.beans.DressDTO">
+	<select id="selectDress" resultType="com.otsazo.colorfit.beans.DressMemberDTO">
 		SELECT *
-		FROM dress
-		Where dress_uid = #{dress_uid}
+		FROM dress, member
+		Where member.mb_uid = dress.mb_uid and dress.dress_uid = #{dress_uid}
 	</select>
 	
 	<update id="updateDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">

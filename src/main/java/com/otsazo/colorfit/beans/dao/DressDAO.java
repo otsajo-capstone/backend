@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.otsazo.colorfit.beans.DressDTO;
+import com.otsazo.colorfit.beans.DressMemberDTO;
 import com.otsazo.colorfit.beans.LikesDTO;
 import com.otsazo.colorfit.beans.ReplyDTO;
 import com.otsazo.colorfit.beans.RereplyDTO;
@@ -16,7 +17,7 @@ public interface DressDAO {
 	public int insertDress2(@Param("dto") DressDTO dto);
 	public ArrayList<DressDTO> selectMyDresses(int mb_uid);
 	public ArrayList<DressDTO> selectYourDresses(int mb_type);
-	public DressDTO selectDress(int dress_uid);
+	public DressMemberDTO selectDress(int dress_uid);
 	public int updateDress(@Param("dto") DressDTO dto);
 	public int deleteDress(int dress_uid);
 	public int insertReply(@Param("dto") ReplyDTO dto);

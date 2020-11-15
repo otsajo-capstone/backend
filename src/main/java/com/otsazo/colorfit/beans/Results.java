@@ -8,7 +8,7 @@ public class Results {
 	int intResult;
 	int status;
 	MemberDTO mdto;
-	DressDTO ddto;
+	DressMemberDTO ddto;
 	ArrayList<DressDTO> dlist;
 	ArrayList<MemberDTO> mlist;
 	ArrayList<ReplyDTO> rlist;
@@ -20,7 +20,7 @@ public class Results {
 	}
 
 	
-	public Results(String stringResult, int intResult, int status, MemberDTO mdto, DressDTO ddto,
+	public Results(String stringResult, int intResult, int status, MemberDTO mdto, DressMemberDTO ddto,
 			ArrayList<DressDTO> dlist, ArrayList<MemberDTO> mlist, ArrayList<ReplyDTO> rlist,
 			ArrayList<RereplyDTO> rrlist, ArrayList<LikesDTO> llist) {
 		super();
@@ -69,12 +69,12 @@ public class Results {
 		this.mdto = mdto;
 	}
 
-	public DressDTO getDdto() {
+	public DressMemberDTO getDdto() {
 		return ddto;
 	}
 
-	public void setDdto(DressDTO ddto) {
-		this.ddto = ddto;
+	public void setDdto(DressMemberDTO dress) {
+		this.ddto = dress;
 	}
 
 	public ArrayList<DressDTO> getDlist() {
