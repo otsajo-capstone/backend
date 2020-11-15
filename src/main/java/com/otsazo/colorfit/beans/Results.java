@@ -12,13 +12,17 @@ public class Results {
 	ArrayList<DressDTO> dlist;
 	ArrayList<MemberDTO> mlist;
 	ArrayList<ReplyDTO> rlist;
+	ArrayList<RereplyDTO> rrlist;
+	ArrayList<LikesDTO> llist;
 	
 	public Results() {
 		super();
 	}
 
+	
 	public Results(String stringResult, int intResult, int status, MemberDTO mdto, DressDTO ddto,
-			ArrayList<DressDTO> dlist, ArrayList<MemberDTO> mlist, ArrayList<ReplyDTO> rlist) {
+			ArrayList<DressDTO> dlist, ArrayList<MemberDTO> mlist, ArrayList<ReplyDTO> rlist,
+			ArrayList<RereplyDTO> rrlist, ArrayList<LikesDTO> llist) {
 		super();
 		this.stringResult = stringResult;
 		this.intResult = intResult;
@@ -28,7 +32,10 @@ public class Results {
 		this.dlist = dlist;
 		this.mlist = mlist;
 		this.rlist = rlist;
+		this.rrlist = rrlist;
+		this.llist = llist;
 	}
+
 
 	public String getStringResult() {
 		return stringResult;
@@ -92,6 +99,24 @@ public class Results {
 
 	public void setRlist(ArrayList<ReplyDTO> rlist) {
 		this.rlist = rlist;
+	}
+
+	public ArrayList<LikesDTO> getLlist() {
+		return llist;
+	}
+
+	public void setLlist(ArrayList<LikesDTO> llist) {
+		this.llist = llist;
+	}
+
+
+	public ArrayList<RereplyDTO> getRrlist() {
+		return rrlist;
+	}
+
+
+	public void setRrlist(ArrayList<RereplyDTO> rrlist) {
+		this.rrlist = rrlist;
 	}
 	
 }

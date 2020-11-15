@@ -67,10 +67,66 @@
 		Where mb_uid = #{mb_uid}
 	</select>
 	
-	<update id="likeDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
+	<update id="likeDress" flushCache="true" >
 		UPDATE dress
 		SET likes = likes + 1
-		WHERE dress_uid = #{dress_uid};
+		WHERE dress_uid = #{dto.dress_uid};
 	</update>
+	
+	<insert id="likeDress2" flushCache="true" >
+		INSERT INTO likes(dress_uid, mb_uid, likes_type)
+		VALUES (#{dto.dress_uid}, #{dto.mb_uid}, 1);
+	</insert>
+	
+	<update id="unlikeDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
+		UPDATE dress
+		SET likes = likes - 1
+		WHERE dress_uid = #{dto.dress_uid};
+	</update>
+	
+	<update id="unlikeDress2" flushCache="true" parameterType="com.otsazo.colorfit.beans.LikesDTO">
+		UPDATE likes
+		SET likes_type = 0
+		WHERE dress_uid = #{dto.dress_uid} and mb_uid = #{dto.mb_uid};
+	</update>
+	
+	<select id="checkLikesType" resultType="com.otsazo.colorfit.beans.LikesDTO">
+		SELECT likes_type
+		FROM likes
+		Where dress_uid = #{dress_uid}  and mb_uid = #{mb_uid} 
+	</select>
+	
+	<select id="selectMyLikes" resultType="com.otsazo.colorfit.beans.LikesDTO">
+		SELECT *
+		FROM likes
+		Where mb_uid = #{mb_uid} and likes_type=1
+	</select>
+	
+	<insert id="insertRereply" flushCache="true" parameterType="com.otsazo.colorfit.beans.RereplyDTO">
+		INSERT INTO rereply(reply_uid, rereply_content, mb_uid)
+		VALUES (#{dto.reply_uid}, #{dto.rereply_content}, #{dto.mb_uid});
+	</insert>
+	
+	<update id="updateRereply" flushCache="true" parameterType="com.otsazo.colorfit.beans.RereplyDTO">
+		UPDATE rereply
+		SET rereply_content = #{dto.rereply_content}
+		WHERE rereply_uid = #{dto.rereply_uid};
+	</update>
+	
+	<delete id="deleteRereply" flushCache="true">
+		DELETE FROM rereply WHERE rereply_uid = #{rereply_uid}
+	</delete>
+	
+	<select id="selectMyRereply" resultType="com.otsazo.colorfit.beans.RereplyDTO">
+		SELECT rereply.*, reply.dress_uid
+		FROM rereply, reply
+		Where reply.reply_uid = rereply.reply_uid and rereply.mb_uid = #{mb_uid}
+	</select>
+	
+	<select id="selectRereply" resultType="com.otsazo.colorfit.beans.RereplyDTO">
+		SELECT *
+		FROM rereply
+		Where reply_uid = #{reply_uid}
+	</select>
 	
 </mapper>

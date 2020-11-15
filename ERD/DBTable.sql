@@ -65,3 +65,36 @@ ALTER TABLE reply convert to charset utf8;
 
 DROP TABLE IF EXISTS reply ;
 select * from reply;
+
+CREATE TABLE rereply
+(
+    `rereply_uid`       INT         NOT NULL 	AUTO_INCREMENT, 
+    `reply_uid`       	INT         NOT NULL, 
+    `rereply_content`   TEXT        NOT NULL, 
+    `mb_uid`            INT         NOT NULL, 
+    `rereply_date`      DATETIME    NOT NULL    DEFAULT now(), 
+    PRIMARY KEY (rereply_uid),
+    FOREIGN KEY (reply_uid) REFERENCES reply (reply_uid),
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
+);
+
+ALTER TABLE rereply convert to charset utf8;
+
+DROP TABLE IF EXISTS rereply ;
+select * from rereply;
+
+CREATE TABLE likes
+(
+    `dress_uid`       	INT         NOT NULL, 
+    `mb_uid`            INT         NOT NULL, 
+    `likes_type`       	INT         NOT NULL    DEFAULT 0 COMMENT '0: 안 누름 1: 누름',
+    PRIMARY KEY (dress_uid, mb_uid),
+    FOREIGN KEY (dress_uid) REFERENCES dress (dress_uid),
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
+);
+
+ALTER TABLE likes convert to charset utf8;
+
+DROP TABLE IF EXISTS likes ;
+select * from likes;
+

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.otsazo.colorfit.beans.C;
 import com.otsazo.colorfit.beans.DressDTO;
+import com.otsazo.colorfit.beans.LikesDTO;
 import com.otsazo.colorfit.beans.MemberDTO;
 import com.otsazo.colorfit.beans.ReplyDTO;
+import com.otsazo.colorfit.beans.RereplyDTO;
 import com.otsazo.colorfit.beans.Results;
 import com.otsazo.colorfit.beans.dao.DressDAO;
 import com.otsazo.colorfit.beans.dao.MemberDAO;
@@ -117,25 +120,42 @@ public class DressController {
 		
 		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
 		ArrayList<DressDTO> dressList = dao.selectMyDresses(mb_uid);
+		ArrayList<LikesDTO> likedressList = dao.selectMyLikes(mb_uid);
+		ArrayList<ReplyDTO> rlist = dao.selectMyReply(mb_uid);
+		ArrayList<RereplyDTO> rrlist = dao.selectMyRereply(mb_uid);
 		if (dressList!=null) {
 			results.setDlist(dressList);
-			results.setStatus(200);
 		}
+		if (likedressList!=null) {
+			results.setLlist(likedressList);
+		}
+		if (rlist!=null) {
+			results.setRlist(rlist);
+		}
+		if (rlist!=null) {
+			results.setRrlist(rrlist);
+		}
+		results.setStatus(200);
 		return results;
 	}
 	
-	@RequestMapping("/myDressRoom/select/{dress_uid}")
-	public Results selectmydress(@PathVariable("dress_uid") int dress_uid) {
-		
+	@RequestMapping("/DressRoom/selectDress/{dress_uid}/{mb_uid}")
+	public Results selectdress(@PathVariable("dress_uid") int dress_uid, @PathVariable("mb_uid") int mb_uid) {
+
 		Results results = new Results();
-		
 		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
-		DressDTO dto = dao.selectDress(dress_uid);
+		DressDTO dress = dao.selectDress(dress_uid);
 		ArrayList<ReplyDTO> rlist = dao.selectDressReply(dress_uid);
+		LikesDTO like = dao.checkLikesType(dress_uid, mb_uid);
 		
-		if (dto!=null) {
-			results.setDdto(dto);
+		if (dress!=null) {
+			results.setDdto(dress);
 			results.setRlist(rlist);
+			if (like == null) {
+				results.setIntResult(0);
+			}else {
+				results.setIntResult(like.getLikes_type());
+			}
 			results.setStatus(200);
 		}else {
 			results.setStatus(400);
@@ -143,18 +163,6 @@ public class DressController {
 		return results;
 	}
 	
-	@RequestMapping("/myDressRoom/myreply/{mb_uid}")
-	public Results selectmyreply(@PathVariable("mb_uid") int mb_uid) {
-		
-		Results results = new Results();
-		
-		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
-		ArrayList<ReplyDTO> rlist = dao.selectMyReply(mb_uid);
-		
-		results.setRlist(rlist);
-
-		return results;
-	}
 	
 	@RequestMapping("/myDressRoom/update")
 	public Results updatemydress(DressDTO dto, Model model) {
@@ -256,18 +264,105 @@ public class DressController {
 		return results;
 	}
 	
-	@RequestMapping("/yourDressRoom/likeDress/{dress_uid}")
-	public Results likeDress(@PathVariable("dress_uid") int dress_uid) {
+	@RequestMapping("/yourDressRoom/likeDress")
+	public Results likeDress(LikesDTO dto, Model model) {
+		
+		model.addAttribute("dto", dto);
 		
 		Results results = new Results();
 		
 		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
-		int cnt = dao.likeDress(dress_uid);
+		int cnt = dao.likeDress(dto);
+		int cnt2 = dao.likeDress2(dto);
+		
+		if (cnt == 1 && cnt2 == 1) {
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/yourDressRoom/unlikeDress")
+	public Results unlikeDress(LikesDTO dto, Model model) {
+		
+		model.addAttribute("dto", dto);
+		
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		int cnt = dao.unlikeDress(dto);
+		int cnt2 = dao.unlikeDress2(dto);
+		
+		if (cnt == 1 && cnt2 == 1) {
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/yourDressRoom/insertRereply")
+	public Results insertRereply(RereplyDTO dto, Model model) {
+		
+		model.addAttribute("dto", dto);
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		int cnt = dao.insertRereply(dto);
 		
 		if (cnt == 1) {
 			results.setStatus(200);
 		}else {
 			results.setStatus(400);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/yourDressRoom/updateRereply")
+	public Results updateReply(RereplyDTO dto, Model model) {
+		
+		model.addAttribute("dto", dto);
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		int cnt = dao.updateRereply(dto);
+		
+		if (cnt == 1) {
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/yourDressRoom/deleteRereply/{rereply_uid}")
+	public Results deleteRereply(@PathVariable("rereply_uid") int rereply_uid) {
+		
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		int cnt = dao.deleteRereply(rereply_uid);
+		
+		if (cnt == 1) {
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
+		return results;
+	}
+	
+	@RequestMapping("/yourDressRoom/selectRereply/{reply_uid}")
+	public Results selectRereply(@PathVariable("reply_uid") int reply_uid) {
+		
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		ArrayList<RereplyDTO> rrlist = dao.selectRereply(reply_uid);
+		
+		if (rrlist != null) {
+			results.setRrlist(rrlist);
+			results.setStatus(200);
 		}
 		return results;
 	}
