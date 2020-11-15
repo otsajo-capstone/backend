@@ -170,7 +170,9 @@ public class DressController {
 		
 		if (dress!=null) {
 			results.setDdto(dress);
-			results.setRlist(rlist);
+			if (rlist != null) {
+				results.setRlist(rlist);
+			}
 			if (like == null) {
 				results.setIntResult(0);
 			}else {

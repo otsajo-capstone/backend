@@ -61,10 +61,10 @@
 		DELETE FROM reply WHERE reply_uid = #{reply_uid}
 	</delete>
 	
-	<select id="selectDressReply" resultType="com.otsazo.colorfit.beans.ReplyDTO">
-		SELECT *
-		FROM reply
-		Where dress_uid = #{dress_uid}
+	<select id="selectDressReply" resultType="com.otsazo.colorfit.beans.ReplyMemberDTO">
+		SELECT reply.*, member.mb_id, member.mb_type, member.mb_name
+		FROM reply, member
+		Where reply.mb_uid = member.mb_uid and reply.dress_uid = #{dress_uid} 
 	</select>
 	
 	<select id="selectMyReply" resultType="com.otsazo.colorfit.beans.ReplyDTO">
@@ -129,10 +129,10 @@
 		Where reply.reply_uid = rereply.reply_uid and rereply.mb_uid = #{mb_uid}
 	</select>
 	
-	<select id="selectRereply" resultType="com.otsazo.colorfit.beans.RereplyDTO">
-		SELECT *
-		FROM rereply
-		Where reply_uid = #{reply_uid}
+	<select id="selectRereply" resultType="com.otsazo.colorfit.beans.RereplyMemberDTO">
+		SELECT rereply.*, member.mb_id, member.mb_name, member.mb_type
+		FROM rereply, member
+		Where rereply.mb_uid = member.mb_uid and rereply.reply_uid = #{reply_uid}
 	</select>
 	
 </mapper>
