@@ -20,6 +20,7 @@ public interface DressDAO {
 	public DressMemberDTO selectDress(int dress_uid);
 	public int updateDress(@Param("dto") DressDTO dto);
 	public int deleteDress(int dress_uid);
+	public int changeShareType(int dress_uid);
 	public int insertReply(@Param("dto") ReplyDTO dto);
 	public int updateReply(@Param("dto") ReplyDTO dto);
 	public int deleteRereply(int rereply_uid);
