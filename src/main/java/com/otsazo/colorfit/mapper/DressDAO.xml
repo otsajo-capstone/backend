@@ -4,19 +4,19 @@
 
 	<!-- 링크분석결과 저장 -->
 	<insert id="insertDress" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
-		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, color, dress_link, dress_img_org, dress_img_sav, dress_name)
-		VALUES (#{dto.mb_uid}, #{dto.spring}, #{dto.summer}, #{dto.autumn}, #{dto.winter}, #{dto.color}, #{dto.dress_link}, #{dto.dress_img_org}, #{dto.dress_img_sav}, #{dto.dress_name});
+		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, color, dress_link, dress_img_org, dress_img_sav, dress_name, result)
+		VALUES (#{dto.mb_uid}, #{dto.spring}, #{dto.summer}, #{dto.autumn}, #{dto.winter}, #{dto.color}, #{dto.dress_link}, #{dto.dress_img_org}, #{dto.dress_img_sav}, #{dto.dress_name}, #{dto.result});
 	</insert>
 	
 	<!-- 이미지분석결과 저장 -->
 	<insert id="insertDress2" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
-		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, color, dress_img_org, dress_img_sav, dress_name)
-		VALUES (#{dto.mb_uid}, #{dto.spring}, #{dto.summer}, #{dto.autumn}, #{dto.winter}, #{dto.color}, #{dto.dress_img_org}, #{dto.dress_img_sav}, #{dto.dress_name});
+		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, color, dress_img_org, dress_img_sav, dress_name, result)
+		VALUES (#{dto.mb_uid}, #{dto.spring}, #{dto.summer}, #{dto.autumn}, #{dto.winter}, #{dto.color}, #{dto.dress_img_org}, #{dto.dress_img_sav}, #{dto.dress_name}, #{dto.result});
 	</insert>
 	
 	<insert id="insertDress3" flushCache="true" parameterType="com.otsazo.colorfit.beans.DressDTO">
-		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, color, dress_link, dress_img_org, dress_img_sav, dress_name)
-		VALUES (#{mb_uid}, #{spring}, #{summer}, #{autumn}, #{winter}, #{color}, #{dress_link}, #{dress_img_org}, #{dress_img_sav}, #{dress_name});
+		INSERT INTO dress(mb_uid, spring, summer, autumn, winter, color, dress_link, dress_img_org, dress_img_sav, dress_name, result)
+		VALUES (#{mb_uid}, #{spring}, #{summer}, #{autumn}, #{winter}, #{color}, #{dress_link}, #{dress_img_org}, #{dress_img_sav}, #{dress_name}, #{result});
 	</insert>
 	
 	<select id="selectMyDresses" resultType="com.otsazo.colorfit.beans.DressDTO">

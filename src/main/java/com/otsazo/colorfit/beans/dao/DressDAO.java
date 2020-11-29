@@ -15,7 +15,7 @@ public interface DressDAO {
 
 	public int insertDress(@Param("dto") DressDTO dto);
 	public int insertDress2(@Param("dto") DressDTO dto);
-	public int insertDress3(@Param("mb_uid") int mb_uid, @Param("spring") int spring, @Param("summer") int summer, @Param("autumn") int autumn, @Param("winter") int winter, @Param("color") String color, @Param("dress_link") String dress_link, @Param("dress_img_org") String dress_img_org, @Param("dress_img_sav") String dress_img_sav, @Param("dress_name") String dress_name);
+	public int insertDress3(@Param("mb_uid") int mb_uid, @Param("spring") int spring, @Param("summer") int summer, @Param("autumn") int autumn, @Param("winter") int winter, @Param("color") String color, @Param("dress_link") String dress_link, @Param("dress_img_org") String dress_img_org, @Param("dress_img_sav") String dress_img_sav, @Param("dress_name") String dress_name, @Param("result") String result);
 	public ArrayList<DressDTO> selectMyDresses(int mb_uid);
 	public ArrayList<DressDTO> selectYourDresses(int mb_type);
 	public DressMemberDTO selectDress(int dress_uid);

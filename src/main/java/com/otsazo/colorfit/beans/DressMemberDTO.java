@@ -20,6 +20,7 @@ public class DressMemberDTO {
 	private String mb_id;
 	private String mb_name;
 	private int mb_type;
+	private String result;
 	
 	public DressMemberDTO() {
 		super();
@@ -27,7 +28,7 @@ public class DressMemberDTO {
 
 	public DressMemberDTO(int dress_uid, int mb_uid, int spring, int summer, int autumn, int winter, String color,
 			String dress_link, String dress_name, String dress_memo, String dress_regDate, String dress_img_org,
-			String dress_img_sav, int share_type, int likes, String mb_id, String mb_name, int mb_type) {
+			String dress_img_sav, int share_type, int likes, String mb_id, String mb_name, int mb_type, String result) {
 		super();
 		this.dress_uid = dress_uid;
 		this.mb_uid = mb_uid;
@@ -47,6 +48,7 @@ public class DressMemberDTO {
 		this.mb_id = mb_id;
 		this.mb_name = mb_name;
 		this.mb_type = mb_type;
+		this.result = result;
 	}
 
 	public int getDress_uid() {
@@ -191,6 +193,14 @@ public class DressMemberDTO {
 
 	public void setMb_type(int mb_type) {
 		this.mb_type = mb_type;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 	
 }

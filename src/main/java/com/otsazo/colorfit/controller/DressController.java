@@ -27,7 +27,6 @@ import com.otsazo.colorfit.beans.RereplyDTO;
 import com.otsazo.colorfit.beans.Results;
 import com.otsazo.colorfit.beans.dao.DressDAO;
 import com.otsazo.colorfit.beans.dao.MemberDAO;
-import com.otsazo.colorfit.command.SaveLinkResultCommand;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -73,20 +72,20 @@ public class DressController {
 				File saveFile = new File(saveDirectory, dressImg.getOriginalFilename());
 				try {
 					dressImg.transferTo(saveFile);
-					dto.setDress_img_org(dressImg.getOriginalFilename()); //ÆÄÀÏ ¿øº»¸í
-					dto.setDress_img_sav(dressImg.getOriginalFilename()); //ÆÄÀÏ ÀúÀå¸í
+					dto.setDress_img_org(dressImg.getOriginalFilename()); //å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™
+					dto.setDress_img_sav(dressImg.getOriginalFilename()); //å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ï¿½
 					cnt = dao.insertDress(dto);
 					if(cnt == 1) {
 						results.setStatus(200);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-					cnt = 500; // 500 : ÆÄÀÏ ÀúÀå ½ÇÆĞ
+					cnt = 500; // 500 : å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 					results.setStatus(500);
 				}
 			} else {
 				System.out.println("not an image file");
-				cnt = 101; // 101 : ÀÌ¹ÌÁö°¡ ¾Æ´Ñ ´Ù¸¥ ÆÄÀÏ
+				cnt = 101; // 101 : å ì‹±ë±„ì˜™å ì™ì˜™å ì™ì˜™ å ì‹£ëŒì˜™ å ìŒ•ëªŒì˜™ å ì™ì˜™å ì™ì˜™
 				results.setStatus(101);
 			}
 		}
@@ -416,7 +415,7 @@ public class DressController {
 		DressMemberDTO dress = dao.selectDress(dress_uid);
 		int cnt = 0;
 		
-		cnt = dao.insertDress3(mb_uid, dress.getSpring(), dress.getSummer(), dress.getAutumn(), dress.getWinter(), dress.getColor(), dress.getDress_link(), dress.getDress_img_org(), dress.getDress_img_sav(), dress.getDress_name());
+		cnt = dao.insertDress3(mb_uid, dress.getSpring(), dress.getSummer(), dress.getAutumn(), dress.getWinter(), dress.getColor(), dress.getDress_link(), dress.getDress_img_org(), dress.getDress_img_sav(), dress.getDress_name(), dress.getResult());
 		
 		if (cnt == 1) {
 			results.setStatus(200);

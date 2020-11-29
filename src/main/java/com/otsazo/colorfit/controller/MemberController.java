@@ -25,12 +25,6 @@ import com.otsazo.colorfit.beans.MemberDTO;
 import com.otsazo.colorfit.beans.PasswordEncoding;
 import com.otsazo.colorfit.beans.Results;
 import com.otsazo.colorfit.beans.dao.MemberDAO;
-import com.otsazo.colorfit.command.LoginCommand;
-import com.otsazo.colorfit.command.MbFindIdOkCommand;
-import com.otsazo.colorfit.command.MbFindPwOkCommand;
-import com.otsazo.colorfit.command.MypageCommand;
-import com.otsazo.colorfit.command.MypageOkCommand;
-import com.otsazo.colorfit.command.SignUpOkCommand;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -118,8 +112,8 @@ public class MemberController {
 				   message.setFrom(new InternetAddress(SMTP_USERNAME));
 				   message.addRecipient(Message.RecipientType.TO, new InternetAddress(TO));
 		
-				   message.setSubject("ºñ¹Ð¹øÈ£ ¾È³»ÀÔ´Ï´Ù.");
-				   message.setText(dto.getMb_name() + " °í°´´ÔÀÇ ÀÓ½Ã ºñ¹Ð¹øÈ£´Â  " + ranPw + "ÀÔ´Ï´Ù. ÀÓ½Ãºñ¹Ð¹øÈ£·Î ·Î±×ÀÎ ÇÑ µÚ ¹Ýµå½Ã ºñ¹Ð¹øÈ£ º¯°æÀ» ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+				   message.setSubject("ï¿½ï¿½Ð¹ï¿½È£ ï¿½È³ï¿½ï¿½Ô´Ï´ï¿½.");
+				   message.setText(dto.getMb_name() + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½  " + ranPw + "ï¿½Ô´Ï´ï¿½. ï¿½Ó½Ãºï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.");
 
 				   Transport.send(message);
 		         

@@ -17,6 +17,7 @@ public class DressDTO {
 	private String dress_img_sav;
 	private int share_type;
 	private int likes;
+	private String result;
 	
 	public DressDTO() {
 		super();
@@ -24,7 +25,7 @@ public class DressDTO {
 
 	public DressDTO(int dress_uid, int mb_uid, int spring, int summer, int autumn, int winter, String color,
 			String dress_link, String dress_name, String dress_memo, String dress_regDate, String dress_img_org,
-			String dress_img_sav, int share_type, int likes) {
+			String dress_img_sav, int share_type, int likes, String result) {
 		super();
 		this.dress_uid = dress_uid;
 		this.mb_uid = mb_uid;
@@ -41,6 +42,7 @@ public class DressDTO {
 		this.dress_img_sav = dress_img_sav;
 		this.share_type = share_type;
 		this.likes = likes;
+		this.result = result;
 	}
 
 	public int getDress_uid() {
@@ -155,18 +157,20 @@ public class DressDTO {
 		this.likes = likes;
 	}
 
-
-
 	public String getDress_link() {
 		return dress_link;
 	}
 
-
-
 	public void setDress_link(String dress_link) {
 		this.dress_link = dress_link;
 	}
-	
-	
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 	
 }
