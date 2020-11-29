@@ -240,15 +240,21 @@
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
-            </plugin>
+            </plugin>   
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <configuration>
-                    <mainClass>org.test.int1.Main</mainClass>
-                </configuration>
-            </plugin>
+        		<groupId>org.springframework.boot</groupId>
+        		<artifactId>spring-boot-maven-plugin</artifactId>
+        		<configuration>
+            		<mainClass>com.otsazo.colorfit</mainClass>
+        		</configuration>
+        		<executions>
+            		<execution>
+                		<goals>
+                    		<goal>repackage</goal>
+                		</goals>
+            		</execution>
+       			</executions>
+			</plugin>
         </plugins>
     </build>
 </project>
