@@ -57,7 +57,7 @@ CREATE TABLE reply
     `dress_uid`       	INT         NOT NULL, 
     `reply_content`     TEXT        NOT NULL, 
     `mb_uid`            INT         NOT NULL, 
-    `reply_date`        DATETIME    NOT NULL    DEFAULT now(), 
+    `reply_regDate`        DATETIME    NOT NULL    DEFAULT now(), 
     PRIMARY KEY (reply_uid),
     FOREIGN KEY (dress_uid) REFERENCES dress (dress_uid),
     FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
@@ -74,7 +74,7 @@ CREATE TABLE rereply
     `reply_uid`       	INT         NOT NULL, 
     `rereply_content`   TEXT        NOT NULL, 
     `mb_uid`            INT         NOT NULL, 
-    `rereply_date`      DATETIME    NOT NULL    DEFAULT now(), 
+    `rereply_regDate`      DATETIME    NOT NULL    DEFAULT now(), 
     PRIMARY KEY (rereply_uid),
     FOREIGN KEY (reply_uid) REFERENCES reply (reply_uid),
     FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
