@@ -407,4 +407,23 @@ public class DressController {
 		return results;
 	}
 	
+	@RequestMapping("/DressRoom/cloneDress/{dress_uid}/{mb_uid}")
+	public Results cloneDress(@PathVariable("dress_uid") int dress_uid, @PathVariable("mb_uid") int mb_uid) {
+		
+		Results results = new Results();
+		
+		DressDAO dao = C.sqlSession.getMapper(DressDAO.class);
+		DressMemberDTO dress = dao.selectDress(dress_uid);
+		int cnt = 0;
+		
+		cnt = dao.insertDress3(mb_uid, dress.getSpring(), dress.getSummer(), dress.getAutumn(), dress.getWinter(), dress.getColor(), dress.getDress_link(), dress.getDress_img_org(), dress.getDress_img_sav(), dress.getDress_name());
+		
+		if (cnt == 1) {
+			results.setStatus(200);
+		}else {
+			results.setStatus(400);
+		}
+		return results;
+	}
+	
 }
