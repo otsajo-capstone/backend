@@ -10,13 +10,15 @@ public class RereplyMemberDTO {
 	private String mb_id;
 	private String mb_name;
 	private int mb_type;
+	private int dress_uid;
+	
 	
 	public RereplyMemberDTO() {
 		super();
 	}
 
 	public RereplyMemberDTO(int rereply_uid, int reply_uid, int mb_uid, String rereply_content, String rereply_regDate,
-			String mb_id, String mb_name, int mb_type) {
+			String mb_id, String mb_name, int mb_type, int dress_uid) {
 		super();
 		this.rereply_uid = rereply_uid;
 		this.reply_uid = reply_uid;
@@ -26,6 +28,7 @@ public class RereplyMemberDTO {
 		this.mb_id = mb_id;
 		this.mb_name = mb_name;
 		this.mb_type = mb_type;
+		this.dress_uid = dress_uid;
 	}
 
 	public int getRereply_uid() {
@@ -90,6 +93,14 @@ public class RereplyMemberDTO {
 
 	public void setMb_type(int mb_type) {
 		this.mb_type = mb_type;
+	}
+
+	public int getDress_uid() {
+		return dress_uid;
+	}
+
+	public void setDress_uid(int dress_uid) {
+		this.dress_uid = dress_uid;
 	}
 
 }

@@ -43,7 +43,7 @@ CREATE TABLE dress
     `likes`       		INT            NULL    DEFAULT 0,
     `result`       		TEXT           NULL   ,
     PRIMARY KEY (dress_uid),
-    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid) ON DELETE CASCADE
 );
        
 ALTER TABLE dress convert to charset utf8;
@@ -59,8 +59,8 @@ CREATE TABLE reply
     `mb_uid`            INT         NOT NULL, 
     `reply_regDate`        DATETIME    NOT NULL    DEFAULT now(), 
     PRIMARY KEY (reply_uid),
-    FOREIGN KEY (dress_uid) REFERENCES dress (dress_uid),
-    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
+    FOREIGN KEY (dress_uid) REFERENCES dress (dress_uid) ON DELETE CASCADE,
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid) ON DELETE CASCADE
 );
 
 ALTER TABLE reply convert to charset utf8;
@@ -76,8 +76,8 @@ CREATE TABLE rereply
     `mb_uid`            INT         NOT NULL, 
     `rereply_regDate`      DATETIME    NOT NULL    DEFAULT now(), 
     PRIMARY KEY (rereply_uid),
-    FOREIGN KEY (reply_uid) REFERENCES reply (reply_uid),
-    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
+    FOREIGN KEY (reply_uid) REFERENCES reply (reply_uid) ON DELETE CASCADE,
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid) ON DELETE CASCADE
 );
 
 ALTER TABLE rereply convert to charset utf8;
@@ -91,8 +91,8 @@ CREATE TABLE likes
     `mb_uid`            INT         NOT NULL, 
     `likes_type`       	INT         NOT NULL    DEFAULT 0 COMMENT '0: 안 누름 1: 누름',
     PRIMARY KEY (dress_uid, mb_uid),
-    FOREIGN KEY (dress_uid) REFERENCES dress (dress_uid),
-    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid)
+    FOREIGN KEY (dress_uid) REFERENCES dress (dress_uid) ON DELETE cascade,
+    FOREIGN KEY (mb_uid) REFERENCES member (mb_uid) ON DELETE CASCADE
 );
 
 ALTER TABLE likes convert to charset utf8;

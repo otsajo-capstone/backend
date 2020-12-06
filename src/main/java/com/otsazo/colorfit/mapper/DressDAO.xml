@@ -101,11 +101,10 @@
 		WHERE dress_uid = #{dto.dress_uid};
 	</update>
 	
-	<update id="unlikeDress2" flushCache="true" parameterType="com.otsazo.colorfit.beans.LikesDTO">
-		UPDATE likes
-		SET likes_type = 0
+	<delete id="unlikeDress2" flushCache="true" parameterType="com.otsazo.colorfit.beans.LikesDTO">
+		DELETE FROM dress
 		WHERE dress_uid = #{dto.dress_uid} and mb_uid = #{dto.mb_uid};
-	</update>
+	</delete>
 	
 	<select id="checkLikesType" resultType="com.otsazo.colorfit.beans.LikesDTO">
 		SELECT likes_type
@@ -141,9 +140,9 @@
 	</select>
 	
 	<select id="selectRereply" resultType="com.otsazo.colorfit.beans.RereplyMemberDTO">
-		SELECT rereply.*, member.mb_id, member.mb_name, member.mb_type
-		FROM rereply, member
-		Where rereply.mb_uid = member.mb_uid and rereply.reply_uid = #{reply_uid}
+		SELECT rereply.*, member.mb_id, member.mb_name, member.mb_type, reply.dress_uid
+		FROM rereply, member, reply
+		Where rereply.mb_uid = member.mb_uid and rereply.reply_uid = reply.reply_uid and reply.dress_uid = #{dress_uid}
 	</select>
 	
 </mapper>
