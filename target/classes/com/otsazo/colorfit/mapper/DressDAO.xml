@@ -102,7 +102,7 @@
 	</update>
 	
 	<delete id="unlikeDress2" flushCache="true" parameterType="com.otsazo.colorfit.beans.LikesDTO">
-		DELETE FROM dress
+		DELETE FROM likes
 		WHERE dress_uid = #{dto.dress_uid} and mb_uid = #{dto.mb_uid};
 	</delete>
 	
