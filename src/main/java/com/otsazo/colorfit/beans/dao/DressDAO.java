@@ -31,7 +31,7 @@ public interface DressDAO {
 	public ArrayList<ReplyDTO> selectDressReply(int dress_uid);
 	public ArrayList<ReplyDTO> selectMyReply(int mb_uid);
 	public ArrayList<RereplyDTO> selectMyRereply(int mb_uid);
-	public ArrayList<RereplyDTO> selectRereply(int reply_uid);
+	public ArrayList<RereplyDTO> selectRereply(int dress_uid);
 	public int likeDress(@Param("dto") LikesDTO dto);
 	public int likeDress2(@Param("dto") LikesDTO dto);
 	public int unlikeDress(@Param("dto") LikesDTO dto);

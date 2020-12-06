@@ -167,6 +167,7 @@ public class DressController {
 		DressMemberDTO dress = dao.selectDress(dress_uid);
 		ArrayList<ReplyDTO> rlist = dao.selectDressReply(dress_uid);
 		LikesDTO like = dao.checkLikesType(dress_uid, mb_uid);
+		ArrayList<RereplyDTO> rrlist = dao.selectRereply(dress_uid);
 		
 		if (dress!=null) {
 			results.setDdto(dress);
@@ -177,6 +178,9 @@ public class DressController {
 				results.setIntResult(0);
 			}else {
 				results.setIntResult(like.getLikes_type());
+			}
+			if (rrlist != null) {
+				results.setRrlist(rrlist);
 			}
 			results.setStatus(200);
 		}else {
